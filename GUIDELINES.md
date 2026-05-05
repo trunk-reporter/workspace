@@ -51,5 +51,5 @@ Only deploy from a clean, tested commit on `main` (or a release tag).
 Each subproject lives in its own directory (and its own GitHub repo). When making cross-cutting changes:
 
 - Update `openapi.yaml` in tr-engine whenever the API contract changes — it is the source of truth
-- Update the relevant `CLAUDE.md` when architecture, conventions, or build steps change
-- Keep the root `CLAUDE.md` and `GUIDELINES.md` current as the org evolves
+- Update the relevant `AGENTS.md` when architecture, conventions, or build steps change
+- Keep the root `AGENTS.md` and `GUIDELINES.md` current as the org evolves
