@@ -160,87 +160,87 @@ Static cross-project review findings. Per Phase 3, turn these into focused GitHu
 - [x] Finish AGENTS.md migration: `tr-bot`, `tr-plugin-dvcf`, `tr-plugin-avcf`, `tr-stack`, `tr-docker`, and `symbolstream` have no guidance file at all. `p25_audio_quality` and `projectTRanscribe` have only `CLAUDE.md` and need migration or an explicit archive notice.
 - [x] Remove stale `CLAUDE.md` files from repos that have completed migration: `tr-engine` and `tr-update-worker` both have both `AGENTS.md` and `CLAUDE.md` coexisting; the old `CLAUDE.md` should be deleted once content is confirmed merged.
 - [x] Add repository hygiene policy and `.gitignore` coverage for local artifacts: model directories, checkpoints, `.venv`, `node_modules`, screenshots, backup tarballs, Playwright output, and downloaded Qwen model trees.
-- [ ] Decide ownership/archive status for `p25_audio_quality` and `projectTRanscribe`; either migrate them into the active workflow or label them clearly as historical research.
-- [ ] No CI is configured in any repo. GUIDELINES says "if CI is configured, a green push is the floor" but it never is. Add GitHub Actions workflows for at minimum: `bash build.sh && go vet ./...` on tr-engine, `npm run build && npm run lint` on tr-dashboard and tr-bot, on push to any branch.
+- [x] Decide ownership/archive status for `p25_audio_quality` and `projectTRanscribe`; either migrate them into the active workflow or label them clearly as historical research.
+- [x] No CI is configured in any repo. GUIDELINES says "if CI is configured, a green push is the floor" but it never is. Add GitHub Actions workflows for at minimum: `bash build.sh && go vet ./...` on tr-engine, `npm run build && npm run lint` on tr-dashboard and tr-bot, on push to any branch.
 
 ### tr-engine
 
 - [x] Update `sample.env` auth comments to match current `open` / `token` / `full` auth behavior; remove stale auto-generated `AUTH_TOKEN` and read-only `WRITE_TOKEN` language.
 - [x] Remove or rewrite stale Caddy auth-injection guidance in `AGENTS.md` and docs now that `auth-init` handles guest read tokens.
 - [x] Harden `web/playground.html` token handling: do not include bearer tokens in AI prompts or generated page text; use the `auth-init` flow or require manual local token entry in previews.
-- [ ] Add `.gitignore` coverage and purge local artifacts from the repo directory: backup tarballs (`*.tar.gz`), screenshot PNGs, compiled debug binaries (`debug-receiver`, `*.exe`), and `debug-samples` directory are committed to the working tree.
-- [ ] Add SSE observability: dropped events from identity-resolution failures (#17) and ring-buffer evictions (#11) are currently invisible in production. Emit a counter/log line for each discarded event and expose via a `/metrics` or `/api/v1/debug/sse` endpoint.
+- [x] Add `.gitignore` coverage and purge local artifacts from the repo directory: backup tarballs (`*.tar.gz`), screenshot PNGs, compiled debug binaries (`debug-receiver`, `*.exe`), and `debug-samples` directory are committed to the working tree.
+- [x] Add SSE observability: dropped events from identity-resolution failures (#17) and ring-buffer evictions (#11) are currently invisible in production. Emit a counter/log line for each discarded event and expose via a `/metrics` or `/api/v1/debug/sse` endpoint.
 
 ### tr-dashboard
 
-- [ ] Replace token-in-query audio playback with an opaque blob URL or same-origin audio proxy; `getCallAudioUrl` currently exposes JWTs in URLs.
-- [ ] Add browser smoke or regression coverage for `auth-init` open/token/full mode and authenticated audio playback behavior.
+- [x] Replace token-in-query audio playback with an opaque blob URL or same-origin audio proxy; `getCallAudioUrl` currently exposes JWTs in URLs.
+- [x] Add browser smoke or regression coverage for `auth-init` open/token/full mode and authenticated audio playback behavior.
 
 ### tr-bot
 
-- [ ] Fix off-topic persona cost before enabling it broadly: cap serialized history/token budget, bound image count, and test the context-size limit. The current handler serializes channel history into both persona prompts.
-- [ ] Add an operational kill switch or default-off config for the off-topic persona handler.
+- [x] Fix off-topic persona cost before enabling it broadly: cap serialized history/token budget, bound image count, and test the context-size limit. The current handler serializes channel history into both persona prompts.
+- [x] Add an operational kill switch or default-off config for the off-topic persona handler.
 
 ### tr-plugin-dvcf
 
-- [ ] Investigate low DVCF production ratio with instrumentation around `call_start`, `voice_codec_data`, and `call_end`; correlate skipped calls by `audio_type`, `codec_type`, and talkgroup.
-- [ ] Add a DVCF smoke fixture that validates SSSP headers, `CALL_START` / `METADATA` / `CALL_END` ordering, and stale-call salvage behavior.
+- [x] Investigate low DVCF production ratio with instrumentation around `call_start`, `voice_codec_data`, and `call_end`; correlate skipped calls by `audio_type`, `codec_type`, and talkgroup.
+- [x] Add a DVCF smoke fixture that validates SSSP headers, `CALL_START` / `METADATA` / `CALL_END` ordering, and stale-call salvage behavior.
 
 ### tr-plugin-avcf
 
-- [ ] Tighten the `analog_only` filter: empty `audio_type` currently appears able to pass; verify digital calls cannot be wrapped as AVCF when Trunk Recorder omits `audio_type`.
-- [ ] Add an AVCF fixture or smoke test for wrapping a sample audio file and verifying metadata plus audio extraction.
+- [x] Tighten the `analog_only` filter: empty `audio_type` currently appears able to pass; verify digital calls cannot be wrapped as AVCF when Trunk Recorder omits `audio_type`.
+- [x] Add an AVCF fixture or smoke test for wrapping a sample audio file and verifying metadata plus audio extraction.
 
 ### symbolstream
 
-- [ ] Refactor stream socket ownership to RAII and clear global stream config on parse/restart; raw socket pointers and global vectors risk duplicate streams and leaks.
-- [ ] Add receiver/parser tests for JSON and binary frame modes, including reconnect and truncated-payload behavior.
+- [x] Refactor stream socket ownership to RAII and clear global stream config on parse/restart; raw socket pointers and global vectors risk duplicate streams and leaks.
+- [x] Add receiver/parser tests for JSON and binary frame modes, including reconnect and truncated-payload behavior.
 
 ### imbe_asr
 
-- [ ] Add upload size limits and sanitize 500 responses in `server/app.py`; the endpoint reads full uploads into memory and returns raw exception text.
-- [ ] Audit `torch.load(..., weights_only=False)` call sites; document the trusted-checkpoint assumption or switch to safer loading where compatible.
-- [ ] Split and pin runtime versus training requirements; current requirements are broad, mostly unpinned, and mix server dependencies with `wandb` / `awscli`.
+- [x] Add upload size limits and sanitize 500 responses in `server/app.py`; the endpoint reads full uploads into memory and returns raw exception text.
+- [x] Audit `torch.load(..., weights_only=False)` call sites; document the trusted-checkpoint assumption or switch to safer loading where compatible.
+- [x] Split and pin runtime versus training requirements; current requirements are broad, mostly unpinned, and mix server dependencies with `wandb` / `awscli`.
 
 ### qwen3-asr-server
 
-- [ ] Fix temp-file cleanup when `_ensure_wav` / ffmpeg conversion fails before the `try` / `finally`; the temporary uploaded file can leak.
-- [ ] Add request upload size limits and reject unsupported media before reading full bodies into memory.
-- [ ] Pin compatible runtime dependencies or add constraints; `torch`, `transformers`, `librosa`, and `qwen_asr` are mostly unpinned.
+- [x] Fix temp-file cleanup when `_ensure_wav` / ffmpeg conversion fails before the `try` / `finally`; the temporary uploaded file can leak.
+- [x] Add request upload size limits and reject unsupported media before reading full bodies into memory.
+- [x] Pin compatible runtime dependencies or add constraints; `torch`, `transformers`, `librosa`, and `qwen_asr` are mostly unpinned.
 
 ### tr-stack
 
-- [ ] Update auth config and docs from `AUTH_ENABLED` / `WRITE_TOKEN` / Caddy injection to the current `open` / `token` / `full` model with `ADMIN_PASSWORD` and API keys.
-- [ ] Make the default compose path CPU-friendly or split GPU support into a clear override; the default NVIDIA device reservation can break first-run on non-GPU hosts.
-- [ ] Lock down Mosquitto/default port exposure: avoid anonymous MQTT on `0.0.0.0` by default or document LAN-only assumptions and auth setup.
+- [x] Update auth config and docs from `AUTH_ENABLED` / `WRITE_TOKEN` / Caddy injection to the current `open` / `token` / `full` model with `ADMIN_PASSWORD` and API keys.
+- [x] Make the default compose path CPU-friendly or split GPU support into a clear override; the default NVIDIA device reservation can break first-run on non-GPU hosts.
+- [x] Lock down Mosquitto/default port exposure: avoid anonymous MQTT on `0.0.0.0` by default or document LAN-only assumptions and auth setup.
 
 ### tr-docker
 
-- [ ] Pin Trunk Recorder and plugin git refs via build args for reproducible images; the Dockerfile currently builds latest shallow clones.
-- [ ] Update the README included-plugin list to mention `mqtt_avcf` and any current patches or versions.
+- [x] Pin Trunk Recorder and plugin git refs via build args for reproducible images; the Dockerfile currently builds latest shallow clones.
+- [x] Update the README included-plugin list to mention `mqtt_avcf` and any current patches or versions.
 
 ### tr-update-worker
 
-- [ ] Update `PRODUCTS` and README GitHub URLs from `LumenPrima/*` to `trunk-reporter/*`.
-- [ ] Validate and cap the `days` query parameter on stats/dashboard endpoints to avoid expensive unbounded D1 queries.
-- [ ] Consider fail-closed auth for stats/dashboard when `DASHBOARD_KEY` is unset, or make open analytics an explicit config flag.
-- [ ] Add a build/typecheck script, such as `tsc --noEmit` or Wrangler type generation, so CI can validate worker code.
-- [ ] Remove screenshot PNGs from repo root (`dashboard-*.png`, `tv-overview-*.png`); add to `.gitignore`. None of the above items have GitHub issues yet — file them before starting work.
+- [x] Update `PRODUCTS` and README GitHub URLs from `LumenPrima/*` to `trunk-reporter/*`.
+- [x] Validate and cap the `days` query parameter on stats/dashboard endpoints to avoid expensive unbounded D1 queries.
+- [x] Consider fail-closed auth for stats/dashboard when `DASHBOARD_KEY` is unset, or make open analytics an explicit config flag.
+- [x] Add a build/typecheck script, such as `tsc --noEmit` or Wrangler type generation, so CI can validate worker code.
+- [x] Remove screenshot PNGs from repo root (`dashboard-*.png`, `tv-overview-*.png`); add to `.gitignore`.
 
 ### p25_vocoder
 
-- [ ] Add or verify `.gitignore` and artifact policy for checkpoints, data, and samples; keep large training outputs out of source control.
-- [ ] Add minimal README/`AGENTS.md` status explaining whether this is active research and how to run smoke inference.
+- [x] Add or verify `.gitignore` and artifact policy for checkpoints, data, and samples; keep large training outputs out of source control.
+- [x] Add minimal README/`AGENTS.md` status explaining whether this is active research and how to run smoke inference.
 
 ### p25_audio_quality
 
-- [ ] Migrate legacy `.claude` guidance to `AGENTS.md` or mark this project archived.
-- [ ] Document vendored dependency/data layout and ignore generated comparison/test outputs.
+- [x] Migrate legacy `.claude` guidance to `AGENTS.md` or mark this project archived.
+- [x] Document vendored dependency/data layout and ignore generated comparison/test outputs.
 
 ### projectTRanscribe
 
-- [ ] Add `AGENTS.md` / README orientation or an archive notice; the repo has many design docs but no active Codex guidance.
-- [ ] Replace default runnable secrets such as `minioadmin` in examples with explicit dev-only notes and env placeholders.
+- [x] Add `AGENTS.md` / README orientation or an archive notice; the repo has many design docs but no active Codex guidance.
+- [x] Replace default runnable secrets such as `minioadmin` in examples with explicit dev-only notes and env placeholders.
 
 ---
 
