@@ -1,0 +1,4 @@
+# Local-only directories (no GitHub remote yet)
+p25_audio_quality/
+p25_vocoder/
+projectTRanscribe/

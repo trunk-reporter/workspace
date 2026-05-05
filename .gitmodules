@@ -1,0 +1,33 @@
+[submodule "imbe_asr"]
+	path = imbe_asr
+	url = https://github.com/trunk-reporter/imbe-asr.git
+[submodule "qwen3-asr-server"]
+	path = qwen3-asr-server
+	url = https://github.com/trunk-reporter/qwen3-asr-server.git
+[submodule "symbolstream"]
+	path = symbolstream
+	url = https://github.com/trunk-reporter/symbolstream.git
+[submodule "tr-bot"]
+	path = tr-bot
+	url = https://github.com/trunk-reporter/tr-bot.git
+[submodule "tr-dashboard"]
+	path = tr-dashboard
+	url = https://github.com/trunk-reporter/tr-dashboard.git
+[submodule "tr-docker"]
+	path = tr-docker
+	url = https://github.com/trunk-reporter/tr-docker.git
+[submodule "tr-engine"]
+	path = tr-engine
+	url = https://github.com/trunk-reporter/tr-engine.git
+[submodule "tr-plugin-avcf"]
+	path = tr-plugin-avcf
+	url = https://github.com/trunk-reporter/tr-plugin-avcf.git
+[submodule "tr-plugin-dvcf"]
+	path = tr-plugin-dvcf
+	url = https://github.com/trunk-reporter/tr-plugin-dvcf.git
+[submodule "tr-stack"]
+	path = tr-stack
+	url = https://github.com/trunk-reporter/tr-stack.git
+[submodule "tr-update-worker"]
+	path = tr-update-worker
+	url = https://github.com/trunk-reporter/tr-update-worker.git
