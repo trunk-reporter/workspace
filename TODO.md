@@ -253,7 +253,7 @@ Goal: bring the local workspace and GitHub repositories back into a reviewable, 
 - [x] Initialize registered submodules, including `imbe_asr`, before judging root workspace parity.
 - [x] Commit or discard local review work in each subproject; do not leave dirty submodules hidden behind the root workspace.
 - [x] Push local-only review branches and create/refresh PRs after each repo passes its documented build/type-check/smoke command.
-- [ ] Reconcile duplicate or stale agent-generated PRs before merging.
+- [x] Reconcile duplicate or stale agent-generated PRs before merging: closed duplicate tr-engine PRs #43 and #44; kept distinct PRs #42, #45, #49, and dashboard #31, #33, #34, #35 open for review.
 - [x] Update root submodule pointers only after the corresponding subproject commits are pushed.
 
 ### Current Repo Queue
@@ -269,7 +269,7 @@ Goal: bring the local workspace and GitHub repositories back into a reviewable, 
 - [x] `symbolstream`: commit AGENTS/tests parity work; pushed PR #3 after `python3 -m pytest tests` passed.
 - [x] `tr-plugin-dvcf`: commit AGENTS/scripts/spec/plans parity work; pushed PR #2 after fixture generation/validation passed.
 - [x] `tr-plugin-avcf`: commit AGENTS/scripts parity work; pushed PR #1 after fixture generation/validation passed.
-- [x] `projectTRanscribe`: commit archive notice/docs/config placeholder cleanup locally; no GitHub remote is configured, so no PR was opened.
+- [x] `projectTRanscribe`: intentionally keep local-only; archive notice/docs/config placeholder cleanup is committed locally and no GitHub remote/PR is expected.
 
 ## Subproject Priority Order
 
