@@ -265,6 +265,7 @@ Goal: bring the local workspace and GitHub repositories back into a reviewable, 
 - [x] `tr-docker`: commit README/AGENTS parity work; pushed PR #3 after docs/Dockerfile consistency inspection.
 - [x] `tr-update-worker`: commit AGENTS migration, README, query cap, and build/typecheck updates; pushed PR #1 after `npm run typecheck` passed.
 - [x] `qwen3-asr-server`: commit server hardening and `AGENTS.md`; pushed PR #4 after `python3 -m py_compile server.py` passed; downloaded model directories are ignored.
+- [x] `imbe_asr`: initialize clean submodule at pushed review branch; opened PR #9 for the existing `feat/review-deps-docs` work.
 - [x] `symbolstream`: commit AGENTS/tests parity work; pushed PR #3 after `python3 -m pytest tests` passed.
 - [x] `tr-plugin-dvcf`: commit AGENTS/scripts/spec/plans parity work; pushed PR #2 after fixture generation/validation passed.
 - [x] `tr-plugin-avcf`: commit AGENTS/scripts parity work; pushed PR #1 after fixture generation/validation passed.
