@@ -2,3 +2,35 @@
 p25_audio_quality/
 p25_vocoder/
 projectTRanscribe/
+
+# Local artifacts
+node_modules/
+.venv/
+venv/
+dist/
+build/
+*.log
+*.tar.gz
+*.tgz
+*.zip
+*.png
+playwright-report/
+test-results/
+.playwright-mcp/
+.serena/
+.sisyphus/
+
+# ML/model artifacts
+data/
+models/
+checkpoints/
+wandb/
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+*.npz
+qwen3-asr-p25-0.6B/
+Qwen3-ForcedAligner-0.6B/
+Qwen3-ASR-1.7B/
+Qwen3-ASR-1.7B-flat/
