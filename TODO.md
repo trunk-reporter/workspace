@@ -244,6 +244,32 @@ Static cross-project review findings. Per Phase 3, turn these into focused GitHu
 
 ---
 
+## Repo Parity Status — 2026-05-26
+
+Goal: bring the local workspace and GitHub repositories back into a reviewable, synchronized state without losing the May review work. Parity means each repo is either clean on its tracked branch, has its local review work committed and pushed to a GitHub branch/PR, or has an explicit blocker recorded here.
+
+### Cross-Repo Parity Actions
+
+- [x] Initialize registered submodules, including `imbe_asr`, before judging root workspace parity.
+- [x] Commit or discard local review work in each subproject; do not leave dirty submodules hidden behind the root workspace.
+- [x] Push local-only review branches and create/refresh PRs after each repo passes its documented build/type-check/smoke command.
+- [ ] Reconcile duplicate or stale agent-generated PRs before merging.
+- [x] Update root submodule pointers only after the corresponding subproject commits are pushed.
+
+### Current Repo Queue
+
+- [x] `tr-engine`: review four local commits plus untracked web/docs catalog files; pushed PR #49 after `bash build.sh` and `go vet ./...` passed.
+- [x] `tr-dashboard`: commit untracked `AGENTS.md`, ADR, and scripts; pushed PR #35 after `npm run build` and `npm run lint` passed. Existing agent PRs still need human reconciliation.
+- [x] `tr-bot`: commit off-topic/LLM refactor branch in atomic pieces; pushed PR #2 after build/lint/tests passed.
+- [x] `tr-stack`: commit auth/Mosquitto/GPU/docs work; pushed PR #4 after `docker compose config` passed.
+- [x] `tr-docker`: commit README/AGENTS parity work; pushed PR #3 after docs/Dockerfile consistency inspection.
+- [x] `tr-update-worker`: commit AGENTS migration, README, query cap, and build/typecheck updates; pushed PR #1 after `npm run typecheck` passed.
+- [x] `qwen3-asr-server`: commit server hardening and `AGENTS.md`; pushed PR #4 after `python3 -m py_compile server.py` passed; downloaded model directories are ignored.
+- [x] `symbolstream`: commit AGENTS/tests parity work; pushed PR #3 after `python3 -m pytest tests` passed.
+- [x] `tr-plugin-dvcf`: commit AGENTS/scripts/spec/plans parity work; pushed PR #2 after fixture generation/validation passed.
+- [x] `tr-plugin-avcf`: commit AGENTS/scripts parity work; pushed PR #1 after fixture generation/validation passed.
+- [x] `projectTRanscribe`: commit archive notice/docs/config placeholder cleanup locally; no GitHub remote is configured, so no PR was opened.
+
 ## Subproject Priority Order
 
 When no issue priority is specified, prefer working in this order:

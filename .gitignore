@@ -18,6 +18,7 @@ playwright-report/
 test-results/
 .playwright-mcp/
 .serena/
+.sisyphus/
 
 # ML/model artifacts
 data/
@@ -31,3 +32,5 @@ wandb/
 *.npz
 qwen3-asr-p25-0.6B/
 Qwen3-ForcedAligner-0.6B/
+Qwen3-ASR-1.7B/
+Qwen3-ASR-1.7B-flat/
